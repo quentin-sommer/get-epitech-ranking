@@ -1,0 +1,18 @@
+{
+  "name": "getEpiRanking",
+  "version": "1.0.0",
+  "description": "fetches info from Epitech's Intranet",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.15.3",
+    "console.table": "^0.7.0",
+    "lodash": "^4.17.2"
+  }
+}

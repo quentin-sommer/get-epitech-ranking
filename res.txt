@@ -1,0 +1,56 @@
+Starting
+Profiles to fetch : 908
+Fetched login infos
+Fetching students info...
+Fetching modules info...
+Wrote fetched data to res.json for faster processing
+TOTAL STUDENTS 908
+login                                  gpa   tepitech  city    gpaRank  tepitechRank
+-------------------------------------  ----  --------  ------  -------  ------------
+sascha.braun@epitech.eu                3.18  825       FR/STG  67       348         
+francois.rotta@epitech.eu              3.1   795       FR/STG  84       510         
+quentin.sommer@epitech.eu              3.03  935       FR/STG  93       20          
+nicolas.di-nunno@epitech.eu            2.93  805       FR/STG  120      459         
+cyril.flesch@epitech.eu                2.88  770       FR/STG  128      616         
+julien.wawrzyniak@epitech.eu           2.78  765       FR/STG  150      645         
+ekaterina.olivier@epitech.eu           2.78  760       FR/STG  148      664         
+mohamed.kaben@epitech.eu               2.7   760       FR/STG  167      682         
+anais.auger@epitech.eu                 2.67  760       FR/STG  176      666         
+maxime.parriaux@epitech.eu             2.66  850       FR/STG  183      232         
+joan.saum@epitech.eu                   2.62  780       FR/STG  195      585         
+timothee.fermeaux@epitech.eu           2.57  790       FR/STG  208      518         
+jacques.lorentz@epitech.eu             2.53  740       FR/STG  217      751         
+tanguy.acker@epitech.eu                2.5   785       FR/STG  223      562         
+jerome.muller@epitech.eu               2.4   775       FR/STG  257      606         
+adrien.muzika@epitech.eu               2.39  920       FR/STG  262      35          
+thibault.mirandadeoliveira@epitech.eu  2.35  920       FR/STG  271      38          
+quentin.schuller@epitech.eu            2.34  785       FR/STG  275      548         
+nicolas.camus@epitech.eu               2.31  915       FR/STG  284      44          
+paul.mura@epitech.eu                   2.27  770       FR/STG  302      614         
+bastien.cecere@epitech.eu              2.23  820       FR/STG  315      376         
+fabien.vogelweith@epitech.eu           2.23  825       FR/STG  316      351         
+noe.maire-amiot@epitech.eu             2.2   805       FR/STG  330      454         
+clement.bock@epitech.eu                2.17  855       FR/STG  341      205         
+mathias.bragagia@epitech.eu            2.16  805       FR/STG  344      447         
+jonathan.rebourt@epitech.eu            2.1   935       FR/STG  367      23          
+romain.denizot@epitech.eu              2.07  775       FR/STG  379      591         
+hugo.imbert@epitech.eu                 2     885       FR/STG  410      111         
+bertrand.jung@epitech.eu               1.99  795       FR/STG  414      495         
+victor.pugin@epitech.eu                1.95  720       FR/STG  430      779         
+alexy.hostetter@epitech.eu             1.92  715       FR/STG  441      783         
+florent.cucherousset@epitech.eu        1.92  790       FR/STG  444      523         
+cedric.montavon@epitech.eu             1.9   880       FR/STG  448      121         
+renaud.billing@epitech.eu              1.9   880       FR/STG  446      120         
+nicolas.godfrin@epitech.eu             1.84  680       FR/STG  471      816         
+nicolas.malick@epitech.eu              1.8   900       FR/STG  491      70          
+kevin.poirot@epitech.eu                1.79  825       FR/STG  501      368         
+boris.giard@epitech.eu                 1.78  810       FR/STG  502      438         
+william.bourgeay@epitech.eu            1.74  700       FR/STG  516      796         
+sami.skalli@epitech.eu                 1.61  835       FR/STG  579      297         
+thomas.decamp@epitech.eu               1.61  850       FR/STG  583      228         
+quentin.sattler@epitech.eu             1.57  830       FR/STG  602      333         
+olesya.korovina@epitech.eu             1.53  865       FR/STG  625      171         
+jordan.lepera@epitech.eu               1.5   785       FR/STG  639      545         
+ismael.de-buyst@epitech.eu             1.38  805       FR/STG  688      442         
+vincent.gendron@epitech.eu             1.01  0         FR/STG  819      881         
+
