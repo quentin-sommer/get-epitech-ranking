@@ -14,3 +14,5 @@ All data will be persisted into a `res.json` file that will be accessed in furth
 The output is a table showing login, gpa, national gpa rank and national tepitech rank.
 
 You can edit those entries and the processing by tweaking `processStudent` in `index.js`
+
+example use : `npm run start > res.txt`

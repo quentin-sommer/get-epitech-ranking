@@ -50,7 +50,7 @@ const processStudent = data => {
    * Edit map to output more data to the table
    */
   const formated = data
-    .filter(student => student.location === 'FR/STG')
+    // .filter(student => student.location === 'FR/STG')
     .sort(sortByGpaDesc)
     .map(student => ({
         login: student.login,
