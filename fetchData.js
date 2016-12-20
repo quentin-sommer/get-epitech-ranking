@@ -16,6 +16,19 @@ const axiosOpt = {
   }
 }
 
+const getTek4Score = (gpa, tepitech) => {
+  const gpaModifier = (((gpa * 100) / 4) * 0.5)
+  const tepitechModifier = (((tepitech * 100) / 990) * 0.15)
+  return Math.round((gpaModifier + tepitechModifier) * 100) / 100
+}
+
+const processTek4Score = students => {
+  students.forEach(student => {
+    student.tek4Score = getTek4Score(student.gpa, student.highest_tepitech)
+  })
+  return Promise.resolve(students)
+}
+
 const getModulesGrades = students => {
   console.log('Fetching modules info...')
   const promises = students.map(student => {
@@ -108,6 +121,7 @@ const fetch = () => {
     .then(getStudents)
     .then(getProfiles)
     .then(getModulesGrades)
+    .then(processTek4Score)
     .then(students => {
       fs.writeFileSync('./res.json', JSON.stringify(students), {encoding: 'utf8'})
       console.log('Wrote fetched data to res.json for faster processing')

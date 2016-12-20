@@ -24,6 +24,15 @@ const sortByTepitechDesc = (a, b) => {
   return -1
 }
 
+const sorByTek4RankDesc = (a, b) => {
+  if (b.tek4Score > a.tek4Score) {
+    return 1
+  } else if (a.tek4Score === b.tek4Score) {
+    return 0
+  }
+  return -1
+}
+
 const getIdxOfStudent = (student, array) => {
   const len = array.length
   for (let i = 0; i < len; i++) {
@@ -36,10 +45,12 @@ const getIdxOfStudent = (student, array) => {
 
 const getTepitechRank = (student, array) => getIdxOfStudent(student, array) + 1
 const getGpaRank = (student, array) => getIdxOfStudent(student, array) + 1
+const getTek4Rank = (student, array) => getIdxOfStudent(student, array) + 1
 
 const processStudent = data => {
   const orderedByTepitechArr = cloneDeep(data).sort(sortByTepitechDesc)
   const orderedByGpaArr = cloneDeep(data).sort(sortByGpaDesc)
+  const orderedByTek4Rank = cloneDeep(data).sort(sorByTek4RankDesc)
 
   console.log('TOTAL STUDENTS', data.length)
 
@@ -56,9 +67,11 @@ const processStudent = data => {
         login: student.login,
         gpa: student.gpa,
         tepitech: student.highest_tepitech,
+        tek4Score: student.tek4Score,
         city: student.location,
         gpaRank: getGpaRank(student.login, orderedByGpaArr),
         tepitechRank: getTepitechRank(student.login, orderedByTepitechArr),
+        tek4Rank: getTek4Rank(student.login, orderedByTek4Rank),
       })
     )
   console.table(formated)
