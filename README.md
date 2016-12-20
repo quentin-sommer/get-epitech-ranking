@@ -15,4 +15,4 @@ The output is a table showing login, gpa, national gpa rank and national tepitec
 
 You can edit those entries and the processing by tweaking `processStudent` in `index.js`
 
-example use : `npm run start > res.txt`
+example use : `npm run start > "res.txt"`
