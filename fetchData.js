@@ -30,7 +30,9 @@ const getModulesGrades = students => {
         let max = -1
         let tmp = -1
         grades.forEach(grade => {
-          if (grade.titlemodule.includes('TEPitech') && grade.scolaryear === searchParams.year) {
+          if (grade.titlemodule.includes('TEPitech')
+            && grade.scolaryear === searchParams.year
+            && !grade.title.includes('Self-assessment')) {
             tmp = grade.final_note
             if (tmp > max) {
               max = tmp
