@@ -43,9 +43,7 @@ const getIdxOfStudent = (student, array) => {
   return -1
 }
 
-const getTepitechRank = (student, array) => getIdxOfStudent(student, array) + 1
-const getGpaRank = (student, array) => getIdxOfStudent(student, array) + 1
-const getTek4Rank = (student, array) => getIdxOfStudent(student, array) + 1
+const getStudentRank = (student, array) => getIdxOfStudent(student, array) + 1
 
 const processStudent = data => {
   const orderedByTepitechArr = cloneDeep(data).sort(sortByTepitechDesc)
@@ -69,9 +67,9 @@ const processStudent = data => {
         tepitech: student.highest_tepitech,
         tek4Score: student.tek4Score,
         city: student.location,
-        gpaRank: getGpaRank(student.login, orderedByGpaArr),
-        tepitechRank: getTepitechRank(student.login, orderedByTepitechArr),
-        tek4Rank: getTek4Rank(student.login, orderedByTek4Rank),
+        gpaRank: getStudentRank(student.login, orderedByGpaArr),
+        tepitechRank: getStudentRank(student.login, orderedByTepitechArr),
+        tek4Rank: getStudentRank(student.login, orderedByTek4Rank),
       })
     )
   console.table(formated)
