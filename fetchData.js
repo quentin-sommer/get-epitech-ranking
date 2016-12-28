@@ -28,6 +28,11 @@ const processTek4Score = students => {
   })
   return Promise.resolve(students)
 }
+const validTepitechGrade = grade => (
+  grade.titlemodule.includes('TEPitech')
+  && grade.scolaryear === searchParams.year
+  && !grade.title.includes('Self-assessment')
+)
 
 const getModulesGrades = students => {
   console.log('Fetching modules info...')
@@ -36,24 +41,17 @@ const getModulesGrades = students => {
       .then(res => res.data)
       .catch(err => console.log(err))
   })
+
   return Promise.all(promises).then(promises => {
     console.log('Fetched modules info')
     for (let i = 0; i < students.length; i++) {
       const grades = promises[i].notes
       if (grades !== undefined) {
-        let max = -1
-        let tmp = -1
-        grades.forEach(grade => {
-          if (grade.titlemodule.includes('TEPitech')
-            && grade.scolaryear === searchParams.year
-            && !grade.title.includes('Self-assessment')) {
-            tmp = grade.final_note
-            if (tmp > max) {
-              max = tmp
-            }
-          }
-        })
-        students[i].highest_tepitech = max
+        students[i].highest_tepitech = grades.reduce((acc, grade) =>
+          (validTepitechGrade(grade) && grade.final_note > acc)
+            ? grade.final_note
+            : acc, -1
+        )
       } else {
         students[i].highest_tepitech = -1
       }
@@ -97,9 +95,7 @@ const getStudents = ({total, pageSize}) => {
   }
   return Promise.all(promises).then(promises => {
     console.log('Fetched students')
-    let items = []
-    promises.forEach(res => items.push(...res))
-    return items
+    return promises.reduce((acc, cur) => acc.concat(cur), [])
   })
 }
 
