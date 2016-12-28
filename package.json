@@ -1,5 +1,5 @@
 {
-  "name": "get-epi-ranking",
+  "name": "get-epitech-ranking",
   "version": "1.0.2",
   "description": "fetches info from Epitech's Intranet",
   "main": "index.js",
