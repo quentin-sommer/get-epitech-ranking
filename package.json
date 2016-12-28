@@ -1,6 +1,6 @@
 {
   "name": "getEpiRanking",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "fetches info from Epitech's Intranet",
   "main": "index.js",
   "scripts": {
