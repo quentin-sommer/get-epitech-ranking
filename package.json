@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.15.3",
-    "console.table": "^0.7.0",
+    "console.table": "^0.8.0",
     "lodash": "^4.17.2"
   }
 }
