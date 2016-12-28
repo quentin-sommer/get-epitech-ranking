@@ -5,6 +5,7 @@ Every options we send to the API (year, course, promo...) is located in `fetchDa
 
 We also compute an experimental `tek4Rank`.
 It's based at 50% on your gpa and 15% on your best tepitech. It ranges from 0 to 65
+
 ## Usage
 paste your auth cookie from epitech's intranet 
 into `authcookie.example.txt` and  rename it to `authcookie.txt`
