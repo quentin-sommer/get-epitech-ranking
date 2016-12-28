@@ -37,6 +37,7 @@ const getModulesGrades = students => {
       .catch(err => console.log(err))
   })
   return Promise.all(promises).then(promises => {
+    console.log('Fetched modules info')
     for (let i = 0; i < students.length; i++) {
       const grades = promises[i].notes
       if (grades !== undefined) {
@@ -62,7 +63,7 @@ const getModulesGrades = students => {
 }
 
 const getProfiles = basicProfiles => {
-  console.log('Fetching students info...')
+  console.log('Fetching students profiles...')
   const promises = basicProfiles.map(student => {
       return axios.get(`https://intra.epitech.eu/user/${student.login}?format=json`, axiosOpt)
         .then(res => res.data)
@@ -71,6 +72,7 @@ const getProfiles = basicProfiles => {
   )
 
   return Promise.all(promises).then(profiles => {
+    console.log('Fetched students profiles')
     return profiles.map(profile => {
       const ret = profile
       ret.gpa = parseFloat(profile.gpa[0].gpa)
@@ -80,7 +82,7 @@ const getProfiles = basicProfiles => {
 }
 
 const getStudents = ({total, pageSize}) => {
-  console.log('Fetched login infos')
+  console.log(`Fetching ${total} students...`)
   let offset = 0
   const promises = []
   while (offset < total) {
@@ -94,6 +96,7 @@ const getStudents = ({total, pageSize}) => {
     )
   }
   return Promise.all(promises).then(promises => {
+    console.log('Fetched students')
     let items = []
     promises.forEach(res => items.push(...res))
     return items
@@ -111,11 +114,8 @@ const fetch = () => {
     params: searchParams
   })
     .then(response => {
-      const data = response.data
-      const total = data.total
-      const pageSize = data.items.length
-
-      console.log('Profiles to fetch :', total)
+      const total = response.data.total
+      const pageSize = response.data.items.length
       return {total, pageSize}
     })
     .then(getStudents)

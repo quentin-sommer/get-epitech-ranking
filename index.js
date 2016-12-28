@@ -50,7 +50,7 @@ const processStudent = data => {
   const orderedByGpaArr = cloneDeep(data).sort(sortByGpaDesc)
   const orderedByTek4Rank = cloneDeep(data).sort(sorByTek4RankDesc)
 
-  console.log('TOTAL STUDENTS', data.length)
+  console.log(`TOTAL STUDENTS ${data.length}`)
 
   /* processing data for display.
    * Here you can shape the data before displaying it. Eg :
