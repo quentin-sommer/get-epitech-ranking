@@ -12,8 +12,8 @@ const searchParams = {
 }
 const axiosOpt = {
   headers: {
-    'Cookie': `auth=${fs.readFileSync('./authcookie.txt').toString().trim()}`
-  }
+    Cookie: `auth=${fs.readFileSync('./authcookie.txt').toString().trim()}`,
+  },
 }
 
 const getTek4Score = (gpa, tepitech) => {
@@ -36,22 +36,20 @@ const validTepitechGrade = grade => (
 
 const getModulesGrades = students => {
   console.log('Fetching modules info...')
-  const promises = students.map(student => {
-    return axios.get(`https://intra.epitech.eu/user/${student.login}/notes?format=json`, axiosOpt)
+  const promises = students.map(student =>
+    axios.get(`https://intra.epitech.eu/user/${student.login}/notes?format=json`, axiosOpt)
       .then(res => res.data)
-      .catch(err => console.log(err))
-  })
+      .catch(err => console.log(err)))
 
-  return Promise.all(promises).then(promises => {
+  return Promise.all(promises).then(res => {
     console.log('Fetched modules info')
     for (let i = 0; i < students.length; i++) {
-      const grades = promises[i].notes
+      const grades = res[i].notes
       if (grades !== undefined) {
         students[i].highest_tepitech = grades.reduce((acc, grade) =>
-          (validTepitechGrade(grade) && grade.final_note > acc)
+          ((validTepitechGrade(grade) && grade.final_note > acc)
             ? grade.final_note
-            : acc, -1
-        )
+            : acc), -1)
       } else {
         students[i].highest_tepitech = -1
       }
@@ -62,12 +60,10 @@ const getModulesGrades = students => {
 
 const getProfiles = basicProfiles => {
   console.log('Fetching students profiles...')
-  const promises = basicProfiles.map(student => {
-      return axios.get(`https://intra.epitech.eu/user/${student.login}?format=json`, axiosOpt)
-        .then(res => res.data)
-        .catch(err => console.log(err))
-    }
-  )
+  const promises = basicProfiles.map(student =>
+    axios.get(`https://intra.epitech.eu/user/${student.login}?format=json`, axiosOpt)
+      .then(res => res.data)
+      .catch(err => console.log(err)))
 
   return Promise.all(promises).then(profiles => {
     console.log('Fetched students profiles')
@@ -89,13 +85,12 @@ const getStudents = ({total, pageSize}) => {
     offset += pageSize
     promises.push(
       axios.get('https://intra.epitech.eu/user/filter/user', {
-        params: params
-      }).then(response => response.data.items)
-    )
+        params,
+      }).then(response => response.data.items))
   }
-  return Promise.all(promises).then(promises => {
+  return Promise.all(promises).then(res => {
     console.log('Fetched students')
-    return promises.reduce((acc, cur) => acc.concat(cur), [])
+    return res.reduce((acc, cur) => acc.concat(cur), [])
   })
 }
 
@@ -107,7 +102,7 @@ const fetch = () => {
   }
 
   return axios.get('https://intra.epitech.eu/user/filter/user', {
-    params: searchParams
+    params: searchParams,
   })
     .then(response => {
       const total = response.data.total

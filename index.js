@@ -59,19 +59,18 @@ const processStudent = data => {
    * Edit map to output more data to the table
    */
   const formated = data
-    // .filter(student => student.location === 'FR/STG')
+  // .filter(student => student.location === 'FR/STG')
     .sort(sortByGpaDesc)
     .map(student => ({
-        login: student.login,
-        gpa: student.gpa,
-        tepitech: student.highest_tepitech,
-        tek4Score: student.tek4Score,
-        city: student.location,
-        gpaRank: getStudentRank(student.login, orderedByGpaArr),
-        tepitechRank: getStudentRank(student.login, orderedByTepitechArr),
-        tek4Rank: getStudentRank(student.login, orderedByTek4Rank),
-      })
-    )
+      login: student.login,
+      gpa: student.gpa,
+      tepitech: student.highest_tepitech,
+      tek4Score: student.tek4Score,
+      city: student.location,
+      gpaRank: getStudentRank(student.login, orderedByGpaArr),
+      tepitechRank: getStudentRank(student.login, orderedByTepitechArr),
+      tek4Rank: getStudentRank(student.login, orderedByTek4Rank),
+    }))
   console.table(formated)
 }
 
