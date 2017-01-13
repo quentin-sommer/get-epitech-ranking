@@ -73,7 +73,7 @@ const getProfiles = basicProfiles => {
     console.log('Fetched students profiles')
     return profiles.map(profile => {
       const ret = profile
-      ret.gpa = parseFloat(profile.gpa[0].gpa)
+      ret.gpa = parseFloat(profile.gpa[0].gpa).toFixed(2)
       return ret
     })
   })
