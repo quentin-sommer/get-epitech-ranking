@@ -12,7 +12,7 @@ const searchParams = {
 }
 const axiosOpt = {
   headers: {
-    Cookie: `auth=${fs.readFileSync('./authcookie.txt').toString().trim()}`,
+    Cookie: `PHPSESSID=${fs.readFileSync('./cookie.txt').toString().trim()}`,
   },
 }
 

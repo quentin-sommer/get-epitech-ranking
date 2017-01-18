@@ -7,8 +7,8 @@ We also compute an experimental `tek4Rank`.
 It's based at 50% on your gpa and 15% on your best tepitech. It ranges from 0 to 65
 
 ## Usage
-paste your auth cookie from epitech's intranet 
-into `authcookie.example.txt` and  rename it to `authcookie.txt`
+paste your PHPSESSID cookie from epitech's intranet 
+into `cookie.example.txt` and  rename it to `cookie.txt`
 
 `npm i` or `yarn i` and `npm run start`
 
