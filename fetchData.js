@@ -12,13 +12,13 @@ const searchParams = {
 }
 const axiosOpt = {
   headers: {
-    Cookie: `PHPSESSID=${fs.readFileSync('./cookie.txt').toString().trim()}`,
+    Cookie: `user=${fs.readFileSync('./cookie.txt').toString().trim()}`,
   },
 }
 
 const getTek4Score = (gpa, tepitech) => {
-  const gpaModifier = (((gpa * 100) / 4) * 0.5)
-  const tepitechModifier = (((tepitech * 100) / 990) * 0.15)
+  const gpaModifier = gpa * 100 / 4 * 0.5
+  const tepitechModifier = tepitech * 100 / 990 * 0.15
   return Math.round((gpaModifier + tepitechModifier) * 100) / 100
 }
 
@@ -28,28 +28,35 @@ const processTek4Score = students => {
   })
   return Promise.resolve(students)
 }
-const validTepitechGrade = grade => (
-  grade.titlemodule.includes('TEPitech')
-  && grade.scolaryear === searchParams.year
-  && !grade.title.includes('Self-assessment')
-)
+const validTepitechGrade = grade =>
+  grade.titlemodule.includes('TEPitech') &&
+  grade.scolaryear === searchParams.year &&
+  !grade.title.includes('Self-assessment')
 
 const getModulesGrades = students => {
   console.log('Fetching modules info...')
   const promises = students.map(student =>
-    axios.get(`https://intra.epitech.eu/user/${student.login}/notes?format=json`, axiosOpt)
+    axios
+      .get(
+        `https://intra.epitech.eu/user/${student.login}/notes?format=json`,
+        axiosOpt
+      )
       .then(res => res.data)
-      .catch(err => console.log(err)))
+      .catch(err => console.log(err))
+  )
 
   return Promise.all(promises).then(res => {
     console.log('Fetched modules info')
     for (let i = 0; i < students.length; i++) {
       const grades = res[i].notes
       if (grades !== undefined) {
-        students[i].highest_tepitech = grades.reduce((acc, grade) =>
-          ((validTepitechGrade(grade) && grade.final_note > acc)
-            ? grade.final_note
-            : acc), -1)
+        students[i].highest_tepitech = grades.reduce(
+          (acc, grade) =>
+            validTepitechGrade(grade) && grade.final_note > acc
+              ? grade.final_note
+              : acc,
+          -1
+        )
       } else {
         students[i].highest_tepitech = -1
       }
@@ -61,9 +68,14 @@ const getModulesGrades = students => {
 const getProfiles = basicProfiles => {
   console.log('Fetching students profiles...')
   const promises = basicProfiles.map(student =>
-    axios.get(`https://intra.epitech.eu/user/${student.login}?format=json`, axiosOpt)
+    axios
+      .get(
+        `https://intra.epitech.eu/user/${student.login}?format=json`,
+        axiosOpt
+      )
       .then(res => res.data)
-      .catch(err => console.log(err)))
+      .catch(err => console.log(err))
+  )
 
   return Promise.all(promises).then(profiles => {
     console.log('Fetched students profiles')
@@ -84,9 +96,12 @@ const getStudents = ({total, pageSize}) => {
     params.offset = offset
     offset += pageSize
     promises.push(
-      axios.get('https://intra.epitech.eu/user/filter/user', {
-        params,
-      }).then(response => response.data.items))
+      axios
+        .get('https://intra.epitech.eu/user/filter/user', {
+          params,
+        })
+        .then(response => response.data.items)
+    )
   }
   return Promise.all(promises).then(res => {
     console.log('Fetched students')
@@ -101,9 +116,10 @@ const fetch = () => {
     return Promise.resolve(JSON.parse(fs.readFileSync('./res.json', 'utf8')))
   }
 
-  return axios.get('https://intra.epitech.eu/user/filter/user', {
-    params: searchParams,
-  })
+  return axios
+    .get('https://intra.epitech.eu/user/filter/user', {
+      params: searchParams,
+    })
     .then(response => {
       const total = response.data.total
       const pageSize = response.data.items.length
@@ -114,7 +130,9 @@ const fetch = () => {
     .then(getModulesGrades)
     .then(processTek4Score)
     .then(students => {
-      fs.writeFileSync('./res.json', JSON.stringify(students), {encoding: 'utf8'})
+      fs.writeFileSync('./res.json', JSON.stringify(students), {
+        encoding: 'utf8',
+      })
       console.log('Wrote fetched data to res.json for faster processing')
       return students
     })
