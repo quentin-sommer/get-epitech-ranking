@@ -59,7 +59,7 @@ const processStudent = data => {
    * Edit map to output more data to the table
    */
   const formated = data
-  // .filter(student => student.location === 'FR/STG')
+    // .filter(student => student.location === 'FR/STG')
     .sort(sortByGpaDesc)
     .map(student => ({
       login: student.login,
@@ -74,5 +74,4 @@ const processStudent = data => {
   console.table(formated)
 }
 
-fetchData.fetch()
-  .then(students => processStudent(students))
+fetchData.fetch().then(students => processStudent(students))

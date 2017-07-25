@@ -3,7 +3,8 @@ const axios = require('axios')
 
 const searchParams = {
   format: 'json',
-  location: 'FR/BDX|FR/LIL|FR/LYN|FR/MAR|FR/MPL|FR/NCY|FR/NAN|FR/NCE|FR/PAR|FR/REN|FR/STG|FR/TLS',
+  location:
+    'FR/BDX|FR/LIL|FR/LYN|FR/MAR|FR/MPL|FR/NCY|FR/NAN|FR/NCE|FR/PAR|FR/REN|FR/STG|FR/TLS',
   year: 2016,
   course: 'bachelor/classic|bachelor/tek2ed',
   active: true,
